@@ -1,0 +1,13 @@
+main {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+aside {
+  width: 500px;
+}
+
+section,
+table {
+  width: 800px;
+}
