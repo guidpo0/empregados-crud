@@ -13,6 +13,7 @@ function populateFilterByRoles() {
     const checkboxInput = document.createElement('input');
     checkboxInputLabel.textContent = name;
     checkboxInput.value = name;
+    checkboxInput.className = 'role-filter';
     checkboxInput.name = 'filter-by-role';
     checkboxInput.type = 'checkbox';
     checkboxInputLabel.insertBefore(checkboxInput, checkboxInputLabel.firstChild);
@@ -48,14 +49,14 @@ function filterEmployees() {
       break;
   }
 
-  rolesSelected.forEach((roleSelected) => {
-    employeesFiltered = employeesFiltered.filter(({ role }) => role === roleSelected);
-  });
+  if (rolesSelected.length > 0) {
+    employeesFiltered = employees.filter(({ role }) => rolesSelected.includes(role));
+  }
 }
 
 function populateTable() {
   const tableLength = document.querySelector('.table-length');
-  tableLength.innerHTML = employees.length;
+  tableLength.innerHTML = employeesFiltered.length;
 
   employeesFiltered.forEach(({
     id, name, role, salary,
@@ -76,6 +77,37 @@ function populateTable() {
     newRow.appendChild(salaryTd);
     tableBody.appendChild(newRow);
   });
+}
+
+function addListeners() {
+  const sortFilter = document.querySelector('.sort-filter');
+  const roleFilters = document.querySelectorAll('.role-filter');
+
+  function removeTable() {
+    const tableBody = document.querySelector('.table-body');
+    while (tableBody.firstChild) {
+      tableBody.removeChild(tableBody.lastChild);
+    }
+  }
+
+  sortFilter.addEventListener('change', ({ target }) => {
+    filters.sortedBy = target.value;
+    removeTable();
+    filterEmployees();
+    populateTable();
+  });
+
+  roleFilters.forEach((roleFilter) => roleFilter.addEventListener('click', ({ target }) => {
+    if (target.checked) filters.rolesSelected.push(target.value);
+    if (!target.checked) {
+      filters.rolesSelected = filters.rolesSelected.filter(
+        (role) => target.value !== role,
+      );
+    }
+    removeTable();
+    filterEmployees();
+    populateTable();
+  }));
 }
 
 async function getDatabase() {
@@ -106,6 +138,7 @@ async function getDatabase() {
   populateFilterByRoles();
   filterEmployees();
   populateTable();
+  addListeners();
 }
 
 getDatabase();
