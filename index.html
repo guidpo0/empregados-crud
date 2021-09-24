@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empregados CRUD</title>
+</head>
+<body>
+  <header>
+    <h1>Empregados CRUD</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Funcionários (<span></span>)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Salário</th>
+          </tr>
+        </thead>
+        <tbody class="table-body"/>
+      </table>
+    </section>
+    <aside>
+      <h2>Filtros</h2>
+      <label>
+        <p>Ordenar por</p>
+        <select>
+          <option value="nameAsc">Nome (crescente)</option>
+          <option value="nameDesc">Nome (decrescente)</option>
+          <option value="salaryAsc">Salário (crescente)</option>
+          <option value="salaryDesc">Salário (decrescente)</option>
+        </select>
+      </label>
+      <label>
+        <p>Filtrar por cargo</p>
+      </label>
+    </aside>
+  </main>
+</body>
+</html>
