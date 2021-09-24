@@ -1,4 +1,5 @@
 let employees = [];
+let employeesFiltered = [];
 let roles = [];
 const filters = {
   sortedBy: 'nameAsc',
@@ -19,8 +20,44 @@ function populateFilterByRoles() {
   });
 }
 
+function filterEmployees() {
+  const { sortedBy, rolesSelected } = filters;
+
+  switch (sortedBy) {
+    case 'nameAsc':
+      employeesFiltered = employees.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
+      break;
+    case 'nameDesc':
+      employeesFiltered = employees.sort((a, b) => {
+        if (a.name < b.name) return 1;
+        if (a.name > b.name) return -1;
+        return 0;
+      });
+      break;
+    case 'salaryAsc':
+      employeesFiltered = employees.sort((a, b) => a.salary - b.salary);
+      break;
+    case 'salaryDesc':
+      employeesFiltered = employees.sort((a, b) => b.salary - a.salary);
+      break;
+    default:
+      break;
+  }
+
+  rolesSelected.forEach((roleSelected) => {
+    employeesFiltered = employeesFiltered.filter(({ role }) => role === roleSelected);
+  });
+}
+
 function populateTable() {
-  employees.forEach(({
+  const tableLength = document.querySelector('.table-length');
+  tableLength.innerHTML = employees.length;
+
+  employeesFiltered.forEach(({
     id, name, role, salary,
   }) => {
     const tableBody = document.querySelector('.table-body');
@@ -67,6 +104,7 @@ async function getDatabase() {
   }));
 
   populateFilterByRoles();
+  filterEmployees();
   populateTable();
 }
 
