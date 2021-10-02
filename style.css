@@ -1,13 +1,102 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans Display', sans-serif;
+}
+
+body {
+  background-color: #ffd6c0;
+}
+
+header {
+  background-color: #c0caad;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 30px 0;
+}
+
 main {
   display: flex;
   flex-direction: row-reverse;
+  align-items: flex-start;
 }
 
 aside {
-  width: 500px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 30px;
+  text-align: center;
+  min-width: 280px;
+  width: content;
 }
 
-section,
+.filters-container > label {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 30px 0;
+}
+
+.filters-container > label p {
+  align-self: center;
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.filters-container > label select {
+  align-self: center;
+  font-size: 1em;
+  padding: 3px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-by-roles-container label {
+  cursor: pointer;
+  margin: 2px;
+}
+
+.filter-by-roles-container input {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+section {
+  width: 80%;
+  padding: 10px;
+  margin: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 table {
-  width: 800px;
+  margin: 30px 0;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+table thead {
+  text-align: center;
+  font-size: 1.1em;
+}
+
+table td,
+table th {
+  padding: 5px 30px;
+}
+
+table td {
+  border-top: 1px solid black;
+}
+
+.td-number {
+  text-align: right;
 }

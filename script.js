@@ -68,9 +68,11 @@ function populateTable() {
     const roleTd = document.createElement('td');
     const salaryTd = document.createElement('td');
     idTd.innerText = id;
+    idTd.className = 'td-number';
     nameTd.innerText = name;
     roleTd.innerText = role;
     salaryTd.innerText = salary;
+    salaryTd.className = 'td-number';
     newRow.appendChild(idTd);
     newRow.appendChild(nameTd);
     newRow.appendChild(roleTd);
